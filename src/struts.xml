@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    
+    <!-- 
+        资费模块配置信息：
+        一般情况下，一个模块的配置单独封装在一个package下，
+        并且以模块名来命名package的name和namespace。
+     -->
+    <package name="cost" namespace="/cost" extends="json-default">
+    
+        <!--查询资费数据 -->
+        <action name="findCost" class="Action.FindCostAction">
+            <result name="success">
+                /find_cost.jsp
+            </result>
+             <result name="error">
+                /WEB-INF/main/error.jsp
+            </result>
+        </action>
+        <!-- 打开资费新增页面 -->
+        <action name="toAddCost">
+        
+        	<result name="success">
+        		/add_cost.jsp
+        	</result>
+        </action>
+        
+        <action name="checkCostName" class="Action.CheckCostNameAction">
+        	<!-- 使用json result把结果返回 给发出请求者 -->
+        	<result name="success" type="json">
+        		<param name="root">info</param>
+        	</result>
+        </action>
+    </package>
+    
+</struts>
